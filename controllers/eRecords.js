@@ -1,6 +1,15 @@
 const eRecordsRouter = require('express').Router()
 const ERecord = require('../models/eRecord')
 const logger = require('../utils/logger')
+//fetch employee records from mongoDB
+eRecordsRouter.get('/',(request,response,next) => {
+	logger.info(request.body)
+	ERecord.find({}).then((record) => {
+		logger.info(record)
+		response.json(record)
+	}).catch(error => {next(error)})
+})
+//save employee records to mongoDB
 eRecordsRouter.post('/',(request,response,next) => {
 	const body = request.body
 	if (body === undefined) {
@@ -15,6 +24,11 @@ eRecordsRouter.post('/',(request,response,next) => {
 		desig: body.desig,
 		phone_num: body.phone_num,
 	})
+	logger.info(body.name)
+	logger.info(body.i_number)
+	logger.info(body.dep_number)
+	logger.info(body.desig)
+	logger.info(body.phone_num)
 	eRecord.save()
 		.then(savedrecord => {
 			response.json(savedrecord)
@@ -22,4 +36,6 @@ eRecordsRouter.post('/',(request,response,next) => {
 		})
 		.catch(error => next(error))
 })
+
+
 module.exports = eRecordsRouter

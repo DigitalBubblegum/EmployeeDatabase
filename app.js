@@ -2,7 +2,6 @@ const config = require('./utils/config')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-//add router here
 const eRecordsRouter = require('./controllers/eRecords')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -22,7 +21,6 @@ mongoose
 app.use(cors)
 app.use(express.json())
 app.use(middleware.requestLogger)
-//add emprouter here
 app.use('/api/records', eRecordsRouter)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

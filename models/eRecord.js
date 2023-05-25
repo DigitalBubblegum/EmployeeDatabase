@@ -15,16 +15,16 @@ empSchema.set('toJSON', {
 	},
 })
 // add emp to db
-const Employee = mongoose.model('Employee',empSchema)
-const employee = new Employee({
-	name: 'Alexander Alexos',
-	i_number: 'AA1123344',
-	dep_number: 'CDEV1',
-	desig: 'Full Stack Developer',
-	phone_num: '111222333444'
-})
-employee.save().then((result) => {
-	console.log(result.message)
-	mongoose.connection.close()
-})
+// const Employee = mongoose.model('Employee',empSchema)
+// const employee = new Employee({
+// 	name: 'Alexander Alexos',
+// 	i_number: 'AA1123344',
+// 	dep_number: 'CDEV1',
+// 	desig: 'Full Stack Developer',
+// 	phone_num: '111222333444'
+// })
+// employee.save().then((result) => {
+// 	console.log(result)
+// 	mongoose.connection.close()
+// })
 module.exports = mongoose.model('Employee', empSchema)
