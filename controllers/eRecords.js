@@ -26,15 +26,10 @@ eRecordsRouter.post('/',(request,response,next) => {
 		desig: body.desig,
 		phone_num: body.phone_num,
 	})
-	logger.info(body.name)
-	logger.info(body.i_number)
-	logger.info(body.dep_number)
-	logger.info(body.desig)
-	logger.info(body.phone_num)
 	eRecord.save()
 		.then(savedrecord => {
 			response.json(savedrecord)
-			logger.info('saved not to db')
+			logger.info('saved person to db')
 		})
 		.catch(error => next(error))
 })
