@@ -33,6 +33,16 @@ eRecordsRouter.post('/',(request,response,next) => {
 		})
 		.catch(error => next(error))
 })
-
-
+//fetch employee records by id from mongodb
+eRecordsRouter.get('/:id',(request,response,next) => {
+	Employee.findById(request.params.id)
+		.then((record) => {
+			if(record){
+				response.json(record)
+			}
+			else{
+				response.status(404).end()
+			}
+		}).catch((error) => next(error))
+})
 module.exports = eRecordsRouter
