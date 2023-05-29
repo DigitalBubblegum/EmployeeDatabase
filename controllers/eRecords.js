@@ -45,4 +45,13 @@ eRecordsRouter.get('/:id',(request,response,next) => {
 			}
 		}).catch((error) => next(error))
 })
+//delete employee record from mongodb
+eRecordsRouter.delete('/:id', (request, response, next) => {
+	Employee.findByIdAndRemove(request.params.id)
+		.then((result) => {
+			console.log(result.message)
+			response.status(204).end()
+		})
+		.catch((error) => next(error))
+})
 module.exports = eRecordsRouter
